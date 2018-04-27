@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     var player: AVPlayer!
     var playerLayer: AVPlayerLayer!
     
+    var isVideoPlaying = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +45,46 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    @IBAction func playPressed(_ sender: Any) {
+        
+        if isVideoPlaying{
+            player.pause()
+        } else {
+            player.play()
+        }
+        
+        isVideoPlaying = !isVideoPlaying
+        
+    }
+    
+    @IBAction func fastForwardPressed(_ sender: Any) {
+        
+        guard let duration = player.currentItem?.duration else {return}
+        let currentTime = CMTimeGetSeconds(player.currentTime())
+        let newTime = currentTime + 10.0
+        
+        if newTime < (CMTimeGetSeconds(duration) - 10.0) {
+            let time: CMTime = CMTimeMake(Int64(newTime*1000), 1000)
+            player.seek(to: time)
+        }
+    }
+    
+    @IBAction func backwardPressed(_ sender: Any) {
+        
+        let currentTime = CMTimeGetSeconds(player.currentTime())
+        var newTime = currentTime - 10.0
+        
+        if newTime < 0 {
+            newTime = 0
+        }
+        let time: CMTime = CMTimeMake(Int64(newTime*1000), 1000)
+        player.seek(to: time)
+    }
+    
+    
+    
 
 }
 
