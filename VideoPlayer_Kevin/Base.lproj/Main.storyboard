@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nRX-9Y-7Cz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Video Player-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VideoPlayer_Kevin" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pp1-Us-WNa">
-                                <rect key="frame" x="0.0" y="210" width="375" height="173"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pp1-Us-WNa">
+                                <rect key="frame" x="0.0" y="134" width="375" height="211"/>
                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pp1-Us-WNa" secondAttribute="height" multiplier="16:9" id="fhb-P7-GPd"/>
@@ -150,6 +150,7 @@
                             <constraint firstItem="pp1-Us-WNa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="T0n-tG-aHq"/>
                             <constraint firstItem="pp1-Us-WNa" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="eQq-Ux-Txe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tsL-HX-Yi8" secondAttribute="trailing" id="f5T-4k-leD"/>
+                            <constraint firstItem="pp1-Us-WNa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="g1G-2E-70s"/>
                             <constraint firstItem="tsL-HX-Yi8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gNb-oR-tId"/>
                             <constraint firstItem="NJ0-Cy-xGu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="l0k-pU-ZRc"/>
                             <constraint firstItem="NJ0-Cy-xGu" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="qtA-iw-42i"/>
@@ -157,14 +158,38 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Video Player" id="5PQ-RG-unz"/>
                     <connections>
+                        <outlet property="backwardButton" destination="xcT-4c-M53" id="RXl-KD-VbA"/>
                         <outlet property="currentTimeLabel" destination="w8H-VG-b6m" id="hw9-Ky-9Wv"/>
                         <outlet property="durationLabel" destination="VY5-Bv-F4P" id="lkJ-1q-rSB"/>
+                        <outlet property="forwardButton" destination="xe2-zZ-8ly" id="yZt-1O-tml"/>
+                        <outlet property="fullScreenButton" destination="qD9-zd-fIG" id="aKA-zH-SaD"/>
+                        <outlet property="muteButton" destination="odz-9U-tJ8" id="nI9-re-qjw"/>
+                        <outlet property="playButton" destination="Cp0-xP-h7R" id="h9e-Rd-YXQ"/>
                         <outlet property="restTimeLabel" destination="m0Q-V4-l6w" id="Zzd-Zt-a6J"/>
                         <outlet property="videoView" destination="pp1-Us-WNa" id="mFz-WD-yoZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1079.2" y="132.68365817091455"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tai-qX-9ex">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nRX-9Y-7Cz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="acR-4Q-40m">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="P54-sQ-MBB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6kx-SU-lZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140" y="132.68365817091455"/>
         </scene>

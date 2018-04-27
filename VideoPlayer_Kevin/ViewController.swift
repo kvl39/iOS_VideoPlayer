@@ -16,6 +16,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var durationLabel: UISlider!
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var restTimeLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var muteButton: UIButton!
+    @IBOutlet weak var backwardButton: UIButton!
+    @IBOutlet weak var forwardButton: UIButton!
+    @IBOutlet weak var fullScreenButton: UIButton!
     
     
     var player: AVPlayer!
@@ -23,6 +28,8 @@ class ViewController: UIViewController {
     
     var isVideoPlaying = false
     var isMute = false
+    
+    var tapGesture: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +44,10 @@ class ViewController: UIViewController {
         
         videoView.layer.addSublayer(playerLayer)
         
+        self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(myviewTapped(_:)))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,7 +57,81 @@ class ViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        
+        let isLandscape = UIDevice.current.orientation.isLandscape
+        
+        if isLandscape {
+            
+            self.navigationController?.navigationBar.isHidden = true
+            videoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+            
+            renderButtonImage(image: #imageLiteral(resourceName: "play_button"), button: playButton, color: UIColor.white)
+            renderButtonImage(image: #imageLiteral(resourceName: "rewind"), button: backwardButton, color: UIColor.white)
+            renderButtonImage(image: #imageLiteral(resourceName: "fast_forward"), button: forwardButton, color: UIColor.white)
+            renderButtonImage(image: #imageLiteral(resourceName: "full_screen_button"), button: fullScreenButton, color: UIColor.white)
+            
+            if isMute {
+                renderButtonImage(image: #imageLiteral(resourceName: "volume_off"), button: muteButton, color: UIColor.white)
+            } else {
+                renderButtonImage(image: #imageLiteral(resourceName: "volume_up"), button: muteButton, color: UIColor.white)
+            }
+            
+            videoView.addGestureRecognizer(tapGesture)
+            
+        } else {
+            
+            self.navigationController?.navigationBar.isHidden = false
+            //videoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 370).isActive = true
+            renderButtonImage(image: #imageLiteral(resourceName: "play_button"), button: playButton, color: UIColor.black)
+            renderButtonImage(image: #imageLiteral(resourceName: "rewind"), button: backwardButton, color: UIColor.black)
+            renderButtonImage(image: #imageLiteral(resourceName: "fast_forward"), button: forwardButton, color: UIColor.black)
+            renderButtonImage(image: #imageLiteral(resourceName: "full_screen_button"), button: fullScreenButton, color: UIColor.black)
+            
+            if isMute {
+                renderButtonImage(image: #imageLiteral(resourceName: "volume_off"), button: muteButton, color: UIColor.black)
+            } else {
+                renderButtonImage(image: #imageLiteral(resourceName: "volume_up"), button: muteButton, color: UIColor.black)
+            }
+            
+            videoView.removeGestureRecognizer(tapGesture)
+            
+        }
+        
         playerLayer.frame = videoView.bounds
+ 
+    }
+    
+    @objc func myviewTapped(_ sender: UITapGestureRecognizer) {
+        
+        if playButton.isHidden {
+            playButton.isHidden = false
+            muteButton.isHidden = false
+            backwardButton.isHidden = false
+            forwardButton.isHidden = false
+            fullScreenButton.isHidden = false
+            durationLabel.isHidden = false
+            currentTimeLabel.isHidden = false
+            restTimeLabel.isHidden = false
+        } else {
+            playButton.isHidden = true
+            muteButton.isHidden = true
+            backwardButton.isHidden = true
+            forwardButton.isHidden = true
+            fullScreenButton.isHidden = true
+            durationLabel.isHidden = true
+            currentTimeLabel.isHidden = true
+            restTimeLabel.isHidden = true
+        }
+        
+    }
+    
+    func renderButtonImage(image: UIImage, button: UIButton, color: UIColor) {
+        
+        let renderImage = image.withRenderingMode(.alwaysTemplate)
+        button.setImage(renderImage, for: .normal)
+        button.tintColor = color
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -155,6 +240,12 @@ class ViewController: UIViewController {
         
     }
     
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        
+        
+    }
     
 
 }
