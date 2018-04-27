@@ -67,7 +67,13 @@ class ViewController: UIViewController {
         if isLandscape {
             
             self.navigationController?.navigationBar.isHidden = true
-            videoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+            //videoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+            
+            var bounds = UIScreen.main.bounds
+            var width = bounds.size.width
+            var height = bounds.size.height
+            
+            videoView.frame = CGRect(x: 0 , y: 0, width: width, height: height)
             
             renderButtonImage(image: #imageLiteral(resourceName: "play_button"), button: playButton, color: UIColor.white)
             renderButtonImage(image: #imageLiteral(resourceName: "rewind"), button: backwardButton, color: UIColor.white)
@@ -85,9 +91,16 @@ class ViewController: UIViewController {
             isFullScreen = true
             
         } else {
-            
+            let margins = view.layoutMarginsGuide
             self.navigationController?.navigationBar.isHidden = false
-            //videoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 370).isActive = true
+            
+            var bounds = UIScreen.main.bounds
+            var width = bounds.size.width
+            var height = bounds.size.height
+            
+            videoView.frame = CGRect(x: 0 , y: 200, width: width, height: width*9/16)
+            
+            
             renderButtonImage(image: #imageLiteral(resourceName: "play_button"), button: playButton, color: UIColor.black)
             renderButtonImage(image: #imageLiteral(resourceName: "rewind"), button: backwardButton, color: UIColor.black)
             renderButtonImage(image: #imageLiteral(resourceName: "fast_forward"), button: forwardButton, color: UIColor.black)
