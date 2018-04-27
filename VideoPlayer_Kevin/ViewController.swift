@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     
     var isVideoPlaying = false
     var isMute = false
+    var isFullScreen = false
     
     var tapGesture: UITapGestureRecognizer!
     
@@ -69,7 +70,7 @@ class ViewController: UIViewController {
             renderButtonImage(image: #imageLiteral(resourceName: "play_button"), button: playButton, color: UIColor.white)
             renderButtonImage(image: #imageLiteral(resourceName: "rewind"), button: backwardButton, color: UIColor.white)
             renderButtonImage(image: #imageLiteral(resourceName: "fast_forward"), button: forwardButton, color: UIColor.white)
-            renderButtonImage(image: #imageLiteral(resourceName: "full_screen_button"), button: fullScreenButton, color: UIColor.white)
+            renderButtonImage(image: #imageLiteral(resourceName: "full_screen_exit"), button: fullScreenButton, color: UIColor.white)
             
             if isMute {
                 renderButtonImage(image: #imageLiteral(resourceName: "volume_off"), button: muteButton, color: UIColor.white)
@@ -78,6 +79,8 @@ class ViewController: UIViewController {
             }
             
             videoView.addGestureRecognizer(tapGesture)
+            
+            isFullScreen = true
             
         } else {
             
@@ -95,6 +98,9 @@ class ViewController: UIViewController {
             }
             
             videoView.removeGestureRecognizer(tapGesture)
+            
+            isFullScreen = false
+            
             
         }
         
@@ -217,6 +223,24 @@ class ViewController: UIViewController {
         
     }
     
+    
+    
+    @IBAction func fullScreen(_ sender: UIButton) {
+        
+        isFullScreen = !isFullScreen
+        
+        if isFullScreen{
+            sender.setImage(#imageLiteral(resourceName: "full_screen_exit"), for: .normal)
+            let value = UIInterfaceOrientation.landscapeLeft.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+            
+        } else {
+            sender.setImage(#imageLiteral(resourceName: "full_screen_button"), for: .normal)
+            let value = UIInterfaceOrientation.portrait.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+        }
+        
+    }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
