@@ -49,6 +49,8 @@ class ViewController: UIViewController {
         tapGesture.numberOfTapsRequired = 1
         tapGesture.numberOfTouchesRequired = 1
         
+        durationLabel.minimumTrackTintColor = UIColor.purple
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
