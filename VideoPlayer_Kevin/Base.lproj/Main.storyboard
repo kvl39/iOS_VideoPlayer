@@ -26,11 +26,78 @@
                                     <constraint firstAttribute="width" secondItem="pp1-Us-WNa" secondAttribute="height" multiplier="16:9" id="fhb-P7-GPd"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJ0-Cy-xGu">
+                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oJz-Ef-ooA">
+                                        <rect key="frame" x="47.5" y="28" width="280" height="24"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="fZc-ee-iGd">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="24"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odz-9U-tJ8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="24" id="HVc-S3-qiy"/>
+                                                            <constraint firstAttribute="width" constant="24" id="mOK-OX-Wyk"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="volume_up"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcT-4c-M53">
+                                                        <rect key="frame" x="64" y="0.0" width="24" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="24" id="e1o-Me-tha"/>
+                                                            <constraint firstAttribute="width" constant="24" id="hp9-Kr-ndG"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="rewind"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cp0-xP-h7R">
+                                                        <rect key="frame" x="128" y="0.0" width="24" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="24" id="80t-O4-ySw"/>
+                                                            <constraint firstAttribute="height" constant="24" id="LjX-yy-tPp"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="play_button"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xe2-zZ-8ly">
+                                                        <rect key="frame" x="192" y="0.0" width="24" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="24" id="7QW-L7-VaW"/>
+                                                            <constraint firstAttribute="width" constant="24" id="nKP-gN-jwV"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="fast_forward"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qD9-zd-fIG">
+                                                        <rect key="frame" x="256" y="0.0" width="24" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="24" id="ajL-mb-o1b"/>
+                                                            <constraint firstAttribute="width" constant="24" id="u9b-HA-SXK"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="full_screen_button"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="fZc-ee-iGd" secondAttribute="bottom" constant="30" id="JBm-WO-XiR"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="oJz-Ef-ooA" firstAttribute="centerX" secondItem="NJ0-Cy-xGu" secondAttribute="centerX" id="J0Z-6l-hie"/>
+                                    <constraint firstAttribute="height" constant="80" id="L3w-Di-WiX"/>
+                                    <constraint firstItem="oJz-Ef-ooA" firstAttribute="centerY" secondItem="NJ0-Cy-xGu" secondAttribute="centerY" id="lyK-BY-8BI"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="NJ0-Cy-xGu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="PxM-nm-xX6"/>
                             <constraint firstItem="pp1-Us-WNa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="T0n-tG-aHq"/>
                             <constraint firstItem="pp1-Us-WNa" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="eQq-Ux-Txe"/>
+                            <constraint firstItem="NJ0-Cy-xGu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="l0k-pU-ZRc"/>
+                            <constraint firstItem="NJ0-Cy-xGu" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="qtA-iw-42i"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -43,4 +110,11 @@
             <point key="canvasLocation" x="140" y="132.68365817091455"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="fast_forward" width="12" height="12"/>
+        <image name="full_screen_button" width="12" height="12"/>
+        <image name="play_button" width="12" height="12"/>
+        <image name="rewind" width="12" height="12"/>
+        <image name="volume_up" width="12" height="12"/>
+    </resources>
 </document>
