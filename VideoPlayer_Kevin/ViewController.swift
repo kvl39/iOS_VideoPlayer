@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var fullScreenButton: UIButton!
     
+    @IBOutlet weak var textField: UITextField!
     
     var player: AVPlayer!
     var playerLayer: AVPlayerLayer!
@@ -31,19 +32,13 @@ class ViewController: UIViewController {
     var isFullScreen = false
     
     var tapGesture: UITapGestureRecognizer!
+    var ifSearch = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        let url = URL(string: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")!
-        player = AVPlayer(url: url)
-        player.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
-        addTimeObserver()
-        playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = .resize
         
-        videoView.layer.addSublayer(playerLayer)
         
         self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(myviewTapped(_:)))
         tapGesture.numberOfTapsRequired = 1
@@ -55,7 +50,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        player.play()
+        //player.play()
     }
 
     override func viewDidLayoutSubviews() {
@@ -63,7 +58,7 @@ class ViewController: UIViewController {
         
         
         let isLandscape = UIDevice.current.orientation.isLandscape
-        
+        if self.ifSearch{
         if isLandscape {
             
             self.navigationController?.navigationBar.isHidden = true
@@ -120,7 +115,7 @@ class ViewController: UIViewController {
         }
         
         playerLayer.frame = videoView.bounds
- 
+        }
     }
     
     @objc func myviewTapped(_ sender: UITapGestureRecognizer) {
@@ -174,6 +169,22 @@ class ViewController: UIViewController {
         })
     }
     
+   
+    @IBAction func search(_ sender: UIButton) {
+        
+//        let url = URL(string: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")!
+        let url = URL(string: textField.text!)
+        player = AVPlayer(url: url!)
+        player.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
+        addTimeObserver()
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = .resize
+        
+        videoView.layer.addSublayer(playerLayer)
+        
+        self.ifSearch = true
+        
+    }
     
     @IBAction func playPressed(_ sender: Any) {
         
